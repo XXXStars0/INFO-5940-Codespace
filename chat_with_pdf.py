@@ -18,6 +18,8 @@ client = OpenAI(
 	base_url="https://api.ai.it.cornell.edu",
 )
 
+print(f"DEBUG: API Key value is: {os.environ.get('API_KEY', 'Key Not Found')}")
+
 #UI Setup
 st.set_page_config(page_title="File Q&A with OpenAI", page_icon="📝")
 st.title("📝 File Q&A with AI!")

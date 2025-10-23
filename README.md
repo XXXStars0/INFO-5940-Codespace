@@ -130,3 +130,9 @@ This project implements a Retrieval-Augmented Generation (RAG) system based on t
    - Web UI loads correctly.
    - File upload and embedding steps complete successfully.
 - Remaining issue: API key error during response generation (under debugging).
+
+- Get new API key, still not works. Wired. And,
+`print(f"DEBUG: API Key value is: {os.environ.get('API_KEY', 'Key Not Found')}")`
+prints correct API_KEY.
+
+- Unsolved

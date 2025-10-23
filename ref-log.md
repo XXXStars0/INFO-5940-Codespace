@@ -18,3 +18,7 @@
 - Tested on codespace using `/data/RAG_source.txt` for retrieval and question answering.
 - Verified chat responses based on the Assignment 1 as prompt by ChatGpt.
 - Identified API connection issues (now troubleshooting).
+
+- Get new API key, still not works. Wired. And,
+`print(f"DEBUG: API Key value is: {os.environ.get('API_KEY', 'Key Not Found')}")`
+prints correct API_KEY.
