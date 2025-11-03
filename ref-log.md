@@ -53,3 +53,5 @@ My main design choices were focused on the **prompt engineering** of the `INSTRU
     * **Reviewer Agent Output**: **Success**. Its "Delta List" correctly identified the issue: `Issue: Visit timing conflicts with opening hours. Found Hours: Opens 11:00 AM`. This perfectly demonstrated the validation requirement of the assignment.
 
 * **Conclusion**: Both tests confirm that the Planner agent (offline) and Reviewer agent (online, with tools) are interacting correctly. The Reviewer successfully uses the `internet_search` tool to create an actionable "Delta List" that corrects the Planner's drafts.
+
+*  **For detailed output logs and screenshots of the final working application, please see: [Travel_Planner_Testing_Output.pdf](Travel_Planner_Testing_Output.pdf)**
