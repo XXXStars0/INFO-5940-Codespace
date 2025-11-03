@@ -14,7 +14,7 @@ from langchain_community.document_loaders import PyPDFLoader
 
 #Server and Website
 client = OpenAI(
-	api_key=os.environ["API_KEY"],
+	api_key="os.environ["API_KEY"]",
 	base_url="https://api.ai.it.cornell.edu",
 )
 
