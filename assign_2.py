@@ -125,18 +125,52 @@ def internet_search(query: str) -> str:
 
 # BEGIN SOLUTION
 REVIEWER_INSTRUCTIONS = """
+Your role is the Reviewer Agent. You will receive a draft itinerary from the Planner Agent. Your task is to review and validate this plan *before* it is shown to the user.
 
+Your primary goal is to check for feasibility and identify unrealistic or conflicting activities.
+
+You **MUST** use the provided `internet_search` tool for real-time fact-checking to complete your review.
+
+Your validation must focus on:
+1.  **Feasibility Check**: Use the internet tool to verify details like:
+    * Opening hours and availability of attractions.
+    * Ticket prices.
+    * Realistic travel times between locations.
+2.  **Conflict Identification**: Identify any unrealistic or conflicting activities (e.g., scheduling two activities at the same time, underestimating travel time, planning too much for one day).
+
+**Output Format:**
+Your final output **MUST** be a "Delta List".
+* This list must detail specific fixes for any issues found.
+* For every suggested change, you **MUST** include the reason for the fix (e.g., "Reason: Based on search, the museum is closed on this day," or "Reason: Travel time between these two locations is 90 minutes, not 30.").
+* If the plan is feasible and no issues are found, simply state that you have validated the plan and it looks good.
 """
 
-PLANNER_INSTRUCTIONS = """
+PLANNER_INSTRUCTIONS ="""
+Your role is the Planner Agent. Your task is to expand a vague user prompt into a detailed, day-by-day travel itinerary.
 
+You MUST generate a complete itinerary that includes all of the following for each day:
+* Day-by-day activities
+* Approximate times and locations for each activity
+* Estimated costs
+* City clusters (grouping activities by location)
+* Logistics (e.g., transportation suggestions between activities)
+
+You MUST strictly adhere to all key user constraints mentioned in the prompt, such as:
+* Dates
+* Total budget
+* User interests (e.g., history, food)
+* Desired pacing (e.g., relaxed, fast-paced)
+
+Present the final plan in a clear, structured, and easy-to-read format.
+
+**CRITICAL LIMITATION:** You have **NO internet access**. You must generate this entire plan based *only* on your own internal knowledge. Do not apologize for this limitation; simply create the best plan you can with the data you have.
 """
 
 reviewer_agent = Agent(
     name="Reviewer Agent",
     model="openai.gpt-4o",
     instructions=REVIEWER_INSTRUCTIONS.strip(),
-    tools=[]
+    tools=[internet_search]
 )
 
 planner_agent = Agent(
